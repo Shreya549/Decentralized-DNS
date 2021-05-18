@@ -1,10 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.5.0;
 
-// interface DNSCustomAddress {
-//     function getDomainAddress(string calldata domainName) external view returns (string memory);
-// }
-
 contract DNS{
     uint256 constant priceForOneByteForOneSecond = 0.016 ether; // ~1B dollar a year
     uint256 constant priceFactor = 5; // divide by this for every additional byte
@@ -20,27 +16,36 @@ contract DNS{
         uint256 deposit;
         AddressType addressType;
         string domainAddress;
-        // DNSCustomAddress customDomainAddress;
         string domainAlias;
     }
 
     mapping(string => DNSEntry) entries;
     mapping(address => uint256) public pendingDepositReturns;
-
-    function calculateReservationTime(string memory domainName, uint256 paymentAmount) public pure returns (uint256) {
+    
+    event reservedTime(uint256 reservationTime);
+    function calculateReservationTime(string memory domainName, uint256 paymentAmount) public returns (uint256) {
         uint256 priceForSecond = priceForOneByteForOneSecond / (priceFactor ** bytes(domainName).length);
         uint256 reservationTime = paymentAmount / priceForSecond;
-        return reservationTime;
+        emit reservedTime(reservationTime);
+        return (reservationTime);
     }
 
-    function isDomainNameReserved(string memory domainName) public view returns (bool) {
-        return block.timestamp < entries[domainName].reservationEndTime;
+    event isReserved(bool state);
+    function isDomainNameReserved(string memory domainName) public returns (bool) {
+        bool state = block.timestamp < entries[domainName].reservationEndTime;
+        emit isReserved(state);
+        return (state);
     }
 
-    function isDomainNameReservedBySender(string memory domainName) public view returns (bool) {
-        return isDomainNameReserved(domainName) && entries[domainName].owner == msg.sender;
+    event isReservedSender(bool state);
+    function isDomainNameReservedBySender(string memory domainName) public returns (bool) {
+        bool state = isDomainNameReserved(domainName) && entries[domainName].owner == msg.sender;
+        emit isReservedSender(state);
+        
+        return (state);
     }
 
+    
     function reserveDomainName(string calldata domainName) external payable returns (uint){
         require(!isDomainNameReserved(domainName), "Domain name is already reserved.");
         releaseDomainName(domainName);
@@ -53,7 +58,7 @@ contract DNS{
         entries[domainName].reservationEndTime = block.timestamp + reservationTime;
         entries[domainName].owner = msg.sender;
         entries[domainName].deposit += msg.value;
-        
+        emit reservedTime(reservationTime);
         return reservationTime;
     }
 
@@ -71,12 +76,13 @@ contract DNS{
     }
 
     function releaseDomainName(string memory domainName) public {
-        require(entries[domainName].owner == msg.sender || !isDomainNameReserved(domainName), "Domain name has to be reserved by the sender or expaired");
+        require(entries[domainName].owner == msg.sender || !isDomainNameReserved(domainName), "Domain name has to be reserved by the sender or expired");
 
         pendingDepositReturns[entries[domainName].owner] += entries[domainName].deposit;
         delete entries[domainName];
     }
 
+    event returned(bool state);
     function pullDeposit() external returns (bool) {
         uint256 amount = pendingDepositReturns[msg.sender];
         if (amount > 0) {
@@ -88,9 +94,11 @@ contract DNS{
             if (!msg.sender.send(amount)) {
                 // No need to call throw here, just reset the amount owing
                 pendingDepositReturns[msg.sender] = amount;
+                emit returned(false);
                 return false;
             }
         }
+        emit returned(true);
         return true;
     }
 
@@ -100,7 +108,6 @@ contract DNS{
         entries[domainName].addressType = AddressType.Simple;
         entries[domainName].domainAddress = domainAddress;
         entries[domainName].domainAlias = "";
-        // entries[domainName].customDomainAddress = DNSCustomAddress(address(0));
     }
 
     function setCustomDomainAddress(string calldata domainName, string calldata domainAlias) external {
@@ -110,16 +117,15 @@ contract DNS{
         entries[domainName].addressType = AddressType.Custom;
         entries[domainName].domainAddress = "";
         entries[domainName].domainAlias = domainAlias;
-        
-        // entries[domainName].customDomainAddress = customDomainAddress;
-        // aliases[domainName] = simpleDomainName;
-        
+
     }
 
-    function getDomainAddress(string calldata domainName) external view returns (string memory) {
+    event domainAddress(string domAdd);
+    function getDomainAddress(string calldata domainName) external returns (string memory) {
         require(isDomainNameReserved(domainName), "Domain name is not reserved");
 
         if (entries[domainName].addressType == AddressType.Simple) {
+            emit domainAddress(entries[domainName].domainAddress);
             return entries[domainName].domainAddress;
         }
         else {
@@ -127,8 +133,8 @@ contract DNS{
             while(entries[domainAlias].addressType == AddressType.Custom){
                 domainAlias = entries[domainAlias].domainAlias;
             }
+            emit domainAddress(entries[domainAlias].domainAddress);
             return entries[domainAlias].domainAddress;
-            // return entries[domainName].customDomainAddress.getDomainAddress(domainName);
         }
     }
     
