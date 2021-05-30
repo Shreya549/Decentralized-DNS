@@ -45,7 +45,8 @@ web3.eth.getTransactionCount(acAddress, (err, txCount) => {
 
   web3.eth
     .sendSignedTransaction(raw)
-    .then(async (txHash) => {
+      .then(async (txHash) => {
+        console.log(txHash)
       console.log("TxHash:", txHash.transactionHash);
       let reservationTime = web3.utils.hexToNumber(txHash.logs[0].data);
       console.log(reservationTime);
