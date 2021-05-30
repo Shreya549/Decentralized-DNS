@@ -5,9 +5,9 @@ const bcrypt = require("bcrypt");
 const User = require("../models/users.model");
 
 const signup = async (req, res) => {
-  const { name, email, password, accountAddress, secretKey } = req.body;
+    const { name, email, password, accountAddress, secretKey } = req.body;
 
-  if (!name || !email || !password || accountAddress || secretKey) {
+  if (!name || !email || !password || !accountAddress || !secretKey) {
     return res.status(400).json({
       message: "1 or more parameter(s) missing from req.body",
     });
