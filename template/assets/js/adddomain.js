@@ -23,6 +23,8 @@ $("#verifyAmount").on("click", function () {
         var data = JSON.parse(this.responseText);
 
         let reservationTime = data.reservationTime;
+        console.log(data.TransactionReceipt);
+        sessionStorage.setItem("TxReceipt", data.TransactionReceipt);
 
         if (reservationTime / 86400 >= 10 && reservationTime / 86400 <= 365) {
           console.log("verified");
@@ -83,14 +85,16 @@ $("#verifyName").on("click", function () {
 
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === 4) {
-      console.log("this.responseText :>> ", this.responseText);
+    //   console.log("this.responseText :>> ", this.responseText);
       console.log("this.status :>> ", this.status);
 
       if (this.status >= 200 && this.status < 400) {
         // The request has been completed successfully
         var data = JSON.parse(this.responseText);
 
-        let isReserved = data.isReserved;
+          let isReserved = data.isReserved;
+          console.log(data.TransactionReceipt);
+          sessionStorage.setItem("TxReceipt", JSON.stringify(data.TransactionReceipt));
 
         if (isReserved == 0) {
           console.log("Verified");
@@ -166,9 +170,9 @@ $("#registerDomain").on("click", function () {
             $("#finalReg").empty();
 
             $("#finalReg").append(
-              `Your domain has been registered for ${
-                Math.floor(reservationTime / 86400)
-              } days successfully!`
+              `Your domain has been registered for ${Math.floor(
+                reservationTime / 86400
+              )} days successfully!`
             );
 
             sessionStorage.setItem("TxReceipt", data.TransactionReceipt);
