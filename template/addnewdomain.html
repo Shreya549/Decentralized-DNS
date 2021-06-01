@@ -65,12 +65,12 @@
         <div class="row">
           <font style="color: white; font-weight: bold; font-size: 20px;">
         <div class=" col-lg-12 d-flex flex-column justify-content-center">
-        <form>
+        <form name="addDomain">
           <div class="form-group row">
               <label for="text" class="col-4 col-form-label">AMOUNT IN WEI</label>
               <div class="col-lg-4">
                   <div class="input-group">
-                      <input id="text" name="text" placeholder="Insert the amount here" type="text" required="required"
+                      <input id="text" name="amount" placeholder="Insert the amount here" type="text" required="required"
                           class="form-control">
                       <div class="input-group-append">
                           <div class="input-group-text">
@@ -79,35 +79,31 @@
                       </div>
                   </div>
               </div>
-              <div class="col-lg-4">
-                <button type="button" class="btn btn-light">verify </button>
+              <div class="col-lg-4" id = 'amountDiv'>
+                <button type="button" class="btn btn-light" id = "verifyAmount">verify </button>
               </div>
           </div>
           <div class="form-group row">
               <label for="sdate" class="col-4 col-form-label">DOMAIN NAME TO BE REGISTERED</label>
               <div class="col-lg-4">
-                  <input id="sdate" name="sdate" placeholder="Enter the doimain name" type="text" class="form-control"
+                  <input id="sdate" name="name" placeholder="Enter the domain name" type="text" class="form-control"
                       required="required">
               </div>
-              <div class="col-lg-4">
-                <button type="button" class="btn btn-light">verify </button>
+              <div class="col-lg-4" id = "nameDiv">
+                <button type="button" class="btn btn-light" id = "verifyName">Verify</button>
               </div>
 
           </div>
           <div class="form-group row"  style=" padding: 2%;">
-            <div class=" col-lg-6">
-              <button type="button" class="btn btn-light">GENERATE </button>
-              </div>
-            <div class=" col-lg-6">
-          <button type="button" class="btn btn-light">REGISTER </button>
+            
+            <div class=" col-lg-6" id = 'finalReg'>
+          <button type="button" class="btn btn-light" id = 'registerDomain'>REGISTER</button>
           </div>
           </div>
           </div>
-         <div style="text-align: center; font-size: 30px; padding: 2%;">
-           Your domain has been registered successfully!
+         <div style="text-align: center; font-size: 30px; padding: 2%;" id = "success">
          </div>
-         <div style="text-align: center; font-size: 25px; padding: 2%;">
-         <a href="" style="color: white; font-weight: bold; ">CLICK HERE TO VIEW YOUR TRANSACTION RECEIPT</a> 
+         <div style="text-align: center; font-size: 25px; padding: 2%;" id = 'receipt'>
         </div>
         
         </form>
@@ -143,7 +139,7 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/addproject.js"></script>
+  <script src="assets/js/adddomain.js"></script>
   <script src="assets/js/logout.js"></script>
 </body>
 

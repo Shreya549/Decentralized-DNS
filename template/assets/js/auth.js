@@ -43,14 +43,13 @@ $("#stuSignupBtn").on("click", function () {
                 // The request has been completed successfully
                 var data = JSON.parse(this.responseText)
 
-                sessionStorage.setItem("Token", "Token " + data.token);
+                sessionStorage.setItem("Token", "Bearer " + data.token);
                 sessionStorage.setItem("name", data.userDetails.name);
                 sessionStorage.setItem("email", data.userDetails.email);
                 sessionStorage.setItem(
                   "accountAddress",
                   data.userDetails.accountAddress
                 );
-                sessionStorage.setItem("secretKey", data.userDetails.secretKey);
 
                 //The user has successfully authenticated.
                 sessionStorage.setItem("AuthenticationState", "Authenticated");
@@ -58,7 +57,7 @@ $("#stuSignupBtn").on("click", function () {
                 //This authentication key will expire in 1 hour.
                 sessionStorage.setItem("AuthenticationExpires", new Date().addHours(1));
 
-                // window.location.replace('dashboard.html')
+                window.location.replace('dashboard.html')
             } else {
                 try {
                     var data = JSON.parse(this.responseText);
@@ -110,14 +109,13 @@ $("#stuSigninBtn").on("click", function () {
             if (this.status >= 200 && this.status < 400) {
                 // The request has been completed successfully
                 var data = JSON.parse(this.responseText)
-                sessionStorage.setItem("Token", "Token " + data.token);
+                sessionStorage.setItem("Token", "Bearer " + data.token);
                 sessionStorage.setItem("name", data.userDetails.name);
                 sessionStorage.setItem("email", data.userDetails.email);
                 sessionStorage.setItem(
                   "accountAddress",
                   data.userDetails.accountAddress
                 );
-                sessionStorage.setItem("secretKey", data.userDetails.secretKey);
 
 
                 //The user has successfully authenticated.
@@ -126,7 +124,7 @@ $("#stuSigninBtn").on("click", function () {
                 //This authentication key will expire in 1 hour.
                 sessionStorage.setItem("AuthenticationExpires", new Date().addHours(1));
 
-                // window.location.replace('dashboard.html')
+                window.location.replace('dashboard.html')
 
             } else {
                 try {
