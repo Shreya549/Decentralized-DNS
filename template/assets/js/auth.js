@@ -132,7 +132,7 @@ $("#stuSigninBtn").on("click", function () {
     }
   });
 
-  xhr.open("POST", " https://ea05b22316de.ngrok.io/auth/login/");
+  xhr.open("POST", " http://localhost:3000/auth/login/");
   xhr.setRequestHeader("Content-Type", "application/json");
 
   xhr.send(JSON.stringify(data));

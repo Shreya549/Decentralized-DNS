@@ -32,7 +32,7 @@
   <script src="assets/js/logout.js"></script>
 </head>
 
-<body>
+<body onload = "dashboard()"">
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -62,7 +62,7 @@
   <section id="home-top" class="home-top align-items-center">
     <header class="section-header">
       <p style="color: white; padding:2.5%; font-family: 'Merienda', cursive;">My Wallet</p>
-      <button type="button" style="font-weight: 900; padding: 1%;" class="btn btn-light btn-lg" id = 'registerDomain'>0 eth</button>
+      <button type="button" style="font-weight: 900; padding: 1%;" class="btn btn-light btn-lg" id = 'registerDomain'></button>
      <center> <hr width="75%" style="border: 7px solid white;" size="10"> </center>
       <h3 style="color: rgba(252, 244, 244, 0.801); padding: 50px 0px 0px 0px ; font-weight: 900;"> Registered Domains</h3>
       
@@ -107,49 +107,8 @@
     <div id="projects" class="container col-lg-8">
       <h3 style="color: rgb(255, 255, 255); text-align: center; font-weight: 900;">TRANSACTION LIST</h3>
       <br>
-      <table class="table table-bordered" style="text-align: left ;color:white; border: 4px solid white; border-radius: 50px;">
-      <thead>
-        <tr>
-          <th scope="col">Block Number</th>
-          <th scope="col" id="blockHash"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">TimeStamp</th>
-          <th id="blockNumber"></th>
-        </tr>
-        <tr>
-          <th scope="row">Transaction Hash</th>
-          <th id="contractAd"></th>
-        </tr>
-        <tr>
-          <th scope="row">From Address</th>
-          <th id="cumGas"></th>
-        </tr>
-        <tr>
-          <th scope="row">To Address</th>
-          <th id="from"></th>
-        </tr>
-        <tr>
-          <th scope="row">Gas</th>
-          <th id="to"></th>
-        </tr>
-        <tr>
-          <th scope="row">Gas Prize</th>
-          <th id="gas"></th>
-        </tr>
-        <tr>
-          <th scope="row">Cumulative Gas Used</th>
-          <th id="data"></th>
-        </tr>
-        <tr>
-          <th scope="row">Confirmations </th>
-          <th id="txhash"></th>
-        </tr>
-        
-      </tbody>
-    </table>
+    <div id = "tx">
+    </div>
 
   </div>
 
@@ -251,6 +210,8 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+<script src="assets/js/dashboard.js"></script>
 
 </body>
 
