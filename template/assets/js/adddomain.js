@@ -62,7 +62,7 @@ $("#verifyAmount").on("click", function () {
     }
   });
 
-  xhr.open("POST", " https://ea05b22316de.ngrok.io/domain/checkTime/");
+  xhr.open("POST", "https://67c438411d92.ngrok.io/domain/checkTime/");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 
@@ -129,7 +129,7 @@ $("#verifyName").on("click", function () {
     }
   });
 
-  xhr.open("POST", " https://ea05b22316de.ngrok.io/domain/isReserved/");
+  xhr.open("POST", "https://67c438411d92.ngrok.io/domain/isReserved/");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 
@@ -205,7 +205,7 @@ $("#registerDomain").on("click", function () {
       }
     });
 
-    xhr.open("POST", " https://ea05b22316de.ngrok.io/domain/checkTime/");
+    xhr.open("POST", "https://67c438411d92.ngrok.io/domain/checkTime/");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 
