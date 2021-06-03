@@ -68,7 +68,7 @@ $("#stuSignupBtn").on("click", function () {
     }
   });
 
-  xhr.open("POST", " https://ea05b22316de.ngrok.io/auth/signup/");
+  xhr.open("POST", "https://ether.jugaldb.com/auth/signup/");
   xhr.setRequestHeader("Content-Type", "application/json");
 
   xhr.send(JSON.stringify(data));
@@ -132,7 +132,7 @@ $("#stuSigninBtn").on("click", function () {
     }
   });
 
-  xhr.open("POST", " http://localhost:3000/auth/login/");
+  xhr.open("POST", "https://ether.jugaldb.com/auth/login/");
   xhr.setRequestHeader("Content-Type", "application/json");
 
   xhr.send(JSON.stringify(data));

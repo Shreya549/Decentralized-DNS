@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - ProjectGenerator</title>
+  <title>Dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -72,39 +72,12 @@
       <p style="color: white; padding:2.5%; font-family: 'Merienda', cursive;">My Wallet</p>
       <button type="button" style="font-weight: 900; padding: 1%;" class="btn btn-light btn-lg" id = 'registerDomain'></button>
      <center> <hr width="75%" style="border: 7px solid white;" size="10"> </center>
-      <h3 style="color: rgba(252, 244, 244, 0.801); padding: 50px 0px 0px 0px ; font-weight: 900;"> Registered Domains</h3>
+      <h3 style="color: rgba(252, 244, 244, 0.801); padding: 50px 0px 0px 0px ; font-weight: 900;" id = 'regDomHead'></h3>
       
     </header>
     <div id="projects" class="container align-items-center col-lg-6">
       <table  class="table table-bordered " style=" text-align: left ;color:white;  border-radius: 50px;" style="border-radius: 50%">
-        <thead>
-          <tr>
-            <th class="align-middle" scope="col">www.tishu.com</th>
-            <th scope="col" id="blockHash" style="text-align: right;">  <button type="button" style="font-weight: 900; " class="btn btn-light btn-" id = 'registerDomain'>Change the features</button></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th class="align-middle" scope="row">www.mitra.com</th>
-            <th id="blockNumber" style="text-align: right;"><button type="button" style="font-weight: 900; " class="btn btn-light btn-" id = 'registerDomain'>Change the features</button></th>
-          </tr>
-  
-          <tr>
-            <th class="align-middle" scope="row">www.chintu.com</th>
-            <th id="gas" style="text-align: right;"><button type="button" style="font-weight: 900; " class="btn btn-light btn-" id = 'registerDomain'>Change the features</button></th>
-          </tr>
-          <tr>
-            <th class="align-middle" scope="row">tintin.com</th>
-            <th id="data" style="text-align: right;"> <button type="button" style="font-weight: 900; " class="btn btn-light btn-" id = 'registerDomain'>Change the features</button></th>
-          </tr>
-          <tr>
-            <th class="align-middle" scope="row">Kushu.com</th>
-            <th id="txhash" style="text-align: right;"><button type="button" style="font-weight: 900; " class="btn btn-light btn-" id = 'registerDomain'>Change the features</button></th>
-          </tr>
-          <tr>
-            <th class="align-middle"scope="row">joy.com</th>
-            <th id="status" style="text-align: right;"><button type="button" style="font-weight: 900; " class="btn btn-light btn-" id = 'registerDomain'>Change the features</button></th>
-          </tr>
+        <tbody id = 'domNames'>
         </tbody>
       </table>
     </div>

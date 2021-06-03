@@ -12,6 +12,10 @@ function stats() {
         $("#stats")
           .append(`<table class="table table-bordered" style="text-align: left ;color:white; border: 4px solid white; border-radius: 50px;">
         <thead>
+        <tr >
+            <th  scope="col">Total Domains on Network</th>
+            <th  scope="col" id="blockHash">${data.totalDomains}</th>
+          </tr>
           <tr >
             <th  scope="col">Smart Contract Address</th>
             <th  scope="col" id="blockHash"><a style="color: white" href="https://ropsten.etherscan.io/address/${data.contractAddress}" target = "_blank">${data.contractAddress}</a></th>
@@ -112,6 +116,6 @@ function stats() {
       }
     }
   });
-  xhr.open("GET", "http://localhost:3000/network/details/");
+  xhr.open("GET", "https://ether.jugaldb.com/network/details/");
   xhr.send();
 }

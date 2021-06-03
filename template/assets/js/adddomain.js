@@ -62,7 +62,7 @@ $("#verifyAmount").on("click", function () {
     }
   });
 
-  xhr.open("POST", "http://localhost:3000/domain/checkTime/");
+  xhr.open("POST", "https://ether.jugaldb.com/domain/checkTime/");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 
@@ -131,7 +131,7 @@ $("#verifyName").on("click", function () {
     }
   });
 
-  xhr.open("POST", "http://localhost:3000/domain/isReserved/");
+  xhr.open("POST", "https://ether.jugaldb.com/domain/isReserved/");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 
@@ -207,7 +207,7 @@ $("#registerDomain").on("click", function () {
       }
     });
 
-    xhr.open("POST", "http://localhost:3000/domain/checkTime/");
+    xhr.open("POST", "https://ether.jugaldb.com/domain/checkTime/");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 
