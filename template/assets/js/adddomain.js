@@ -62,7 +62,7 @@ $("#verifyAmount").on("click", function () {
     }
   });
 
-  xhr.open("POST", "http://localhost:3000/domain/checkTime/");
+  xhr.open("POST", " https://ea05b22316de.ngrok.io/domain/checkTime/");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 
@@ -85,16 +85,19 @@ $("#verifyName").on("click", function () {
 
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === 4) {
-    //   console.log("this.responseText :>> ", this.responseText);
+      //   console.log("this.responseText :>> ", this.responseText);
       console.log("this.status :>> ", this.status);
 
       if (this.status >= 200 && this.status < 400) {
         // The request has been completed successfully
         var data = JSON.parse(this.responseText);
 
-          let isReserved = data.isReserved;
-          console.log(data.TransactionReceipt);
-          sessionStorage.setItem("TxReceipt", JSON.stringify(data.TransactionReceipt));
+        let isReserved = data.isReserved;
+        console.log(data.TransactionReceipt);
+        sessionStorage.setItem(
+          "TxReceipt",
+          JSON.stringify(data.TransactionReceipt)
+        );
 
         if (isReserved == 0) {
           console.log("Verified");
@@ -126,7 +129,7 @@ $("#verifyName").on("click", function () {
     }
   });
 
-  xhr.open("POST", "http://localhost:3000/domain/isReserved/");
+  xhr.open("POST", " https://ea05b22316de.ngrok.io/domain/isReserved/");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 
@@ -202,7 +205,7 @@ $("#registerDomain").on("click", function () {
       }
     });
 
-    xhr.open("POST", "http://localhost:3000/domain/checkTime/");
+    xhr.open("POST", " https://ea05b22316de.ngrok.io/domain/checkTime/");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 

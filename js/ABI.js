@@ -42,6 +42,69 @@ const contractABI = [
     anonymous: false,
     inputs: [
       {
+        components: [
+          {
+            internalType: "string",
+            name: "domainName",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "reservationEndTime",
+            type: "uint256",
+          },
+          {
+            internalType: "address payable",
+            name: "owner",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "deposit",
+            type: "uint256",
+          },
+          {
+            internalType: "enum DNS.AddressType",
+            name: "addressType",
+            type: "uint8",
+          },
+          {
+            internalType: "string",
+            name: "domainAddress",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "domainAlias",
+            type: "string",
+          },
+        ],
+        indexed: false,
+        internalType: "struct DNS.DNSEntry",
+        name: "myDomain",
+        type: "tuple",
+      },
+    ],
+    name: "myDomainDetails",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "numberOfDomains",
+        type: "uint256",
+      },
+    ],
+    name: "reservedDomain",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
         indexed: false,
         internalType: "uint256",
         name: "reservationTime",
@@ -114,12 +177,100 @@ const contractABI = [
         type: "string",
       },
     ],
+    name: "findDomain",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "string",
+            name: "domainName",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "reservationEndTime",
+            type: "uint256",
+          },
+          {
+            internalType: "address payable",
+            name: "owner",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "deposit",
+            type: "uint256",
+          },
+          {
+            internalType: "enum DNS.AddressType",
+            name: "addressType",
+            type: "uint8",
+          },
+          {
+            internalType: "string",
+            name: "domainAddress",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "domainAlias",
+            type: "string",
+          },
+        ],
+        internalType: "struct DNS.DNSEntry",
+        name: "",
+        type: "tuple",
+      },
+    ],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        internalType: "string",
+        name: "domainName",
+        type: "string",
+      },
+    ],
     name: "getDomainAddress",
     outputs: [
       {
         internalType: "string",
         name: "",
         type: "string",
+      },
+    ],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [],
+    name: "getMyReservedDomain",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [],
+    name: "getTotalReservedDomains",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
       },
     ],
     payable: false,
@@ -166,6 +317,27 @@ const contractABI = [
     ],
     payable: false,
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: true,
+    inputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    name: "numberOfDomains",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    payable: false,
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -278,6 +450,21 @@ const contractABI = [
     outputs: [],
     payable: false,
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: true,
+    inputs: [],
+    name: "totalDomains",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    payable: false,
+    stateMutability: "view",
     type: "function",
   },
 ];
