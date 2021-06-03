@@ -24,7 +24,8 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Merienda:wght@400;700&display=swap" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -60,12 +61,44 @@
   <!-- ======= home-top Section======= -->
   <section id="home-top" class="home-top align-items-center">
     <header class="section-header">
-      <p style="color: white; padding:2.5%">DASHBOARD</p>
-        
-      <h3 style="color: rgba(252, 244, 244, 0.801);"> Registered Domains</h3>
+      <p style="color: white; padding:2.5%; font-family: 'Merienda', cursive;">My Wallet</p>
+      <button type="button" style="font-weight: 900; padding: 1%;" class="btn btn-light btn-lg" id = 'registerDomain'>0 eth</button>
+      <hr style=" width: 75%; color: white; align-content: center;">
+      <h3 style="color: rgba(252, 244, 244, 0.801); padding: 50px 0px 0px 0px ;"> Registered Domains</h3>
+      
     </header>
-    <div id="projects" class="container align-items-center">
-      add
+    <div id="projects" class="container align-items-center col-lg-8">
+      <table  class="table table-bordered" style="text-align: left ;color:white;  border-radius: 50px;" style="border-radius: 50%">
+        <thead>
+          <tr>
+            <th scope="col">BlockHash</th>
+            <th scope="col" id="blockHash"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Block Number</th>
+            <th id="blockNumber"></th>
+          </tr>
+  
+          <tr>
+            <th scope="row">Gas Used</th>
+            <th id="gas"></th>
+          </tr>
+          <tr>
+            <th scope="row">Data</th>
+            <th id="data"></th>
+          </tr>
+          <tr>
+            <th scope="row">Transaction Hash :</th>
+            <th id="txhash"></th>
+          </tr>
+          <tr>
+            <th scope="row">Status</th>
+            <th id="status"></th>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div id="pageno" class="container justify-content-center d-flex">
 

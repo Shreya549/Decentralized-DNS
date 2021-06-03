@@ -56,18 +56,19 @@
   <!-- End Header -->
 
   <!-- ======= main-section Section ======= -->
-  <div id="home-top" class="home-top d-flex align-items-center">
-    
-    <div class="container align-items-center">
+  <section id="home-top" class="home-top align-items-center">
+  
         <header class="section-header">
-            <p style="color: white; ">DASHBOARD</p>
-          </header>
+            <p style="color: white; padding: 5%; ">DASHBOARD</p>
+        </header>
+        <div id= "projects" class="container">
         <div class="row">
-          <font style="color: white; font-weight: bold; font-size: 20px;">
+          
+        <font style="color: white; font-weight: bold; font-size: 20px;">
         <div class=" col-lg-12 d-flex flex-column justify-content-center">
         <form name="addDomain">
-          <div class="form-group row">
-              <label for="text" class="col-4 col-form-label">AMOUNT IN WEI</label>
+        <div class="form-group row">
+            <label for="text" class="col-4 col-form-label">AMOUNT IN WEI</label>
               <div class="col-lg-4">
                   <div class="input-group">
                       <input id="text" name="amount" placeholder="Insert the amount here" type="text" required="required"
@@ -96,18 +97,19 @@
           </div>
           <div class="form-group row"  style=" padding: 2%;">
             
-            <div class=" col-lg-6" id = 'finalReg'>
-          <button type="button" class="btn btn-light" id = 'registerDomain'>REGISTER</button>
+            <div class=" col-lg-12" id = 'finalReg'>
+          <button type="button" style="font-weight: 900;" class="btn btn-light btn-lg" id = 'registerDomain'>REGISTER</button>
           </div>
           </div>
-          </div>
+          
          <div style="text-align: center; font-size: 30px; padding: 2%;" id = "success">
          </div>
          <div style="text-align: center; font-size: 25px; padding: 2%;" id = 'receipt'>
         </div>
         
         </form>
-          </div>
+      </div>
+       
         </font>
           </div>
         </div>
@@ -115,7 +117,7 @@
 
         
   </section>
-  </div>
+ 
   <!-- End main-section -->
   <script>
     function goBack() {
