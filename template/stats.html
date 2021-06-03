@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - ProjectGenerator</title>
+  <title>Dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -35,7 +35,7 @@
 
 </head>
 
-<body>
+<body onload = 'stats()'>
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -73,183 +73,17 @@
     <div id="projects" class="container col-lg-8">
       <h3 style="color: rgb(255, 255, 255); text-align: left; font-weight: 900;">NETWORK DETAILS</h3>
       <br>
-      <table class="table table-bordered" style="text-align: left ;color:white; border: 4px solid white; border-radius: 50px;">
-        <thead>
-          <tr >
-            <th  scope="col">Smart Contract Address</th>
-            <th  scope="col" id="blockHash"> 0x5599218B01a512A844B2a206b4044B8078392216</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr >
-            <th  scope="row">Hard Fork</th>
-            <th id="blockNumber">Berlin</th>
-          </tr>
-          <tr >
-            <th scope="row">BlockChain</th>
-            <th id="contractAd"></th>
-          </tr>
-          <tr >
-            <th scope="row">Number of Block Confirmations</th>
-            <th id="cumGas"></th>
-          </tr>
-          <tr>
-            <th scope="row">Average Gas</th>
-            <th id="from"></th>
-          </tr>
-          <tr>
-            <th scope="row">Init Block</th>
-            <th id="to"></th>
-          </tr>
-          <tr>
-            <th scope="row">Current Block</th>
-            <th id="gas"></th>
-          </tr>
-          <tr>
-            <th scope="row">Node Information</th>
-            <th id="data"></th>
-          </tr>
-          <tr>
-            <th scope="row">Transaction Count </th>
-            <th id="txhash"></th>
-          </tr>
-          
-        </tbody>
-      </table>
+      <div id = 'stats'></div>
       <br>
       <h3 style="color: rgb(255, 255, 255); text-align: left; font-weight: 900;">TRANSACTION LIST</h3>
       <br>
-      <table class="table table-bordered" style="text-align: left ;color:white; border: 4px solid white; border-radius: 50px;">
-        <thead>
-          <tr>
-            <th scope="col">Block Number</th>
-            <th scope="col" id="blockHash"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">TimeStamp</th>
-            <th id="blockNumber"></th>
-          </tr>
-          <tr>
-            <th scope="row">Transaction Hash</th>
-            <th id="contractAd"></th>
-          </tr>
-          <tr>
-            <th scope="row">From Address</th>
-            <th id="cumGas"></th>
-          </tr>
-          <tr>
-            <th scope="row">To Address</th>
-            <th id="from"></th>
-          </tr>
-          <tr>
-            <th scope="row">Gas</th>
-            <th id="to"></th>
-          </tr>
-          <tr>
-            <th scope="row">Gas Prize</th>
-            <th id="gas"></th>
-          </tr>
-          <tr>
-            <th scope="row">Cumulative Gas Used</th>
-            <th id="data"></th>
-          </tr>
-          <tr>
-            <th scope="row">Confirmations </th>
-            <th id="txhash"></th>
-          </tr>
-          
-        </tbody>
-      </table>
-
-
-
-
-
+      <div id = 'tx'>
+      
+      </div>
     </div>
   
   </section>
   <!-- End home-top -->
-
-  <!-- ======= Contact Section ======= -->
-  <section id="contact" class="contact">
-    <div class="container" data-aos="fade-up">
-
-      <header class="section-header">
-        <p>Contact Us</p>
-      </header>
-
-      <div class="row gy-4">
-
-        <div class="col-lg-6">
-
-          <div class="row gy-4">
-            <div class="col-md-6">
-              <div class="info-box">
-                <i class="bi bi-geo-alt"></i>
-                <h3>Address</h3>
-                <p>Vellore Institute of Technology,<br>Vellore, India 632014</p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="info-box">
-                <i class="bi bi-telephone"></i>
-                <h3>Call Us</h3>
-                <p>+91 755 093 0806<br>+91 807 245 8976</p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="info-box">
-                <i class="bi bi-envelope"></i>
-                <h3>Email Us</h3>
-                <p>abhinabamitra19@gmail.com<br>joshi.jai232@gmail.com</p>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="col-lg-6">
-          <form action="forms/contact.php" method="post" class="php-email-form">
-            <div class="row gy-4">
-
-              <div class="col-md-6">
-                <input type="text" name="name" class="form-control" placeholder="Your Name">
-              </div>
-
-              <div class="col-md-6 ">
-                <input type="email" class="form-control" name="email" placeholder="Your Email">
-              </div>
-
-              <div class="col-md-12">
-                <input type="text" class="form-control" name="subject" placeholder="Subject">
-              </div>
-
-              <div class="col-md-12">
-                <textarea class="form-control" name="message" rows="6" placeholder="Message"></textarea>
-              </div>
-
-              <div class="col-md-12 text-center">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                <button type="submit">Send Message</button>
-              </div>
-
-            </div>
-          </form>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-  <!-- End Contact Section -->
   <!-- ======= Footer ======= -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
@@ -266,6 +100,7 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+   <script src="assets/js/stats.js"></script>
 
 </body>
 
