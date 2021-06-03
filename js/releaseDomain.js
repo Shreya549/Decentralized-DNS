@@ -18,8 +18,6 @@ let secretKey = Buffer.from(
   "hex"
 );
 
-const contractMethod = contract.methods.isDomainNameReserved("mitra.com");
-
 web3.eth.getTransactionCount(acAddress, (err, txCount) => {
   //Create the transaction object
   const txObject = {
@@ -27,9 +25,11 @@ web3.eth.getTransactionCount(acAddress, (err, txCount) => {
     to: contractAddress,
     nonce: web3.utils.toHex(txCount),
     gasLimit: web3.utils.toHex(6000000),
-    gasPrice: web3.utils.toHex(web3.utils.toWei("10", "gwei")),
-    data: contractMethod.encodeABI(),
+    gasPrice: web3.utils.toHex(web3.utils.toWei("100", "gwei")),
+    data: contract.methods.releaseDomainName("abcde.com").encodeABI(),
   };
+
+  // console.log(txObject)
 
   //Sign the transaction
   const tx = new Tx(txObject, { chain: "ropsten" });
@@ -39,14 +39,16 @@ web3.eth.getTransactionCount(acAddress, (err, txCount) => {
   const raw = "0x" + serializedTx.toString("hex");
 
   //Broadcast the transaction
-
   web3.eth
     .sendSignedTransaction(raw)
     .then(async (txHash) => {
-      console.log(txHash);
       console.log("TxHash:", txHash.transactionHash);
-      let reservationTime = web3.utils.hexToNumber(txHash.logs[0].data);
-      console.log(reservationTime);
+      console.log(txHash);
+
+    //   let reservationTime = web3.utils.hexToNumber(
+    //     txHash.logs[txHash.logs.length - 1].data
+    //   );
+    //   console.log(reservationTime);
     })
     .catch((err) => console.log(err.toString()));
 });

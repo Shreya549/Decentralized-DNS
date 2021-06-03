@@ -18,7 +18,8 @@ let secretKey = Buffer.from(
   "hex"
 );
 
-const contractMethod = contract.methods.isDomainNameReserved("mitra.com");
+const contractMethod =
+  contract.methods.isDomainNameReservedBySender("mitra.com");
 
 web3.eth.getTransactionCount(acAddress, (err, txCount) => {
   //Create the transaction object
@@ -27,7 +28,7 @@ web3.eth.getTransactionCount(acAddress, (err, txCount) => {
     to: contractAddress,
     nonce: web3.utils.toHex(txCount),
     gasLimit: web3.utils.toHex(6000000),
-    gasPrice: web3.utils.toHex(web3.utils.toWei("10", "gwei")),
+    gasPrice: web3.utils.toHex(web3.utils.toWei("100", "gwei")),
     data: contractMethod.encodeABI(),
   };
 

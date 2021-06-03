@@ -18,7 +18,7 @@ let secretKey = Buffer.from(
   "hex"
 );
 
-const contractMethod = contract.methods.findDomain("abcde.com");
+const contractMethod = contract.methods.findDomain("mitra.com");
 web3.eth.getTransactionCount(acAddress, async(err, txCount) => {
   //Create the transaction object
   const txObject = {
@@ -26,7 +26,7 @@ web3.eth.getTransactionCount(acAddress, async(err, txCount) => {
     to: contractAddress,
     nonce: web3.utils.toHex(txCount),
     gasLimit: web3.utils.toHex(6000000),
-    gasPrice: web3.utils.toHex(web3.utils.toWei("10", "gwei")),
+    gasPrice: web3.utils.toHex(web3.utils.toWei("100", "gwei")),
     data: contractMethod.encodeABI(),
   };
 
@@ -42,7 +42,7 @@ web3.eth.getTransactionCount(acAddress, async(err, txCount) => {
   await web3.eth
     .sendSignedTransaction(raw)
     .then(async (txHash) => {
-    //   console.log(txHash);
+      console.log(txHash);
         console.log("TxHash:", txHash.transactionHash);
         console.log(txHash.logs[0].topics);
         console.log(typeof txHash.logs[0].data);
