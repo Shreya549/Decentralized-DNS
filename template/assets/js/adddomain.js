@@ -62,7 +62,7 @@ $("#verifyAmount").on("click", function () {
     }
   });
 
-  xhr.open("POST", "https://67c438411d92.ngrok.io/domain/checkTime/");
+  xhr.open("POST", "http://localhost:3000/domain/checkTime/");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 
@@ -98,10 +98,12 @@ $("#verifyName").on("click", function () {
           "TxReceipt",
           JSON.stringify(data.TransactionReceipt)
         );
+        console.log(sessionStorage.getItem("TxReceipt"));
 
         if (isReserved == 0) {
           console.log("Verified");
           sessionStorage.setItem("nameVerified", true);
+          // sessionStorage.setItem("TxReceipt", data.TransactionReceipt);
           $("#nameDiv").empty();
           $("#nameDiv").append(`<div font-size: 20px; padding: 2%;">
            Verified!                
@@ -129,7 +131,7 @@ $("#verifyName").on("click", function () {
     }
   });
 
-  xhr.open("POST", "https://67c438411d92.ngrok.io/domain/isReserved/");
+  xhr.open("POST", "http://localhost:3000/domain/isReserved/");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 
@@ -178,7 +180,7 @@ $("#registerDomain").on("click", function () {
               )} days successfully!`
             );
 
-            sessionStorage.setItem("TxReceipt", data.TransactionReceipt);
+            sessionStorage.setItem("TxReceipt",   JSON.stringify(data.TransactionReceipt));
             $("#receipt").append(
               `<a href="receipt.html" style="color: white; font-weight: bold; ">CLICK HERE TO VIEW YOUR TRANSACTION RECEIPT</a>`
             );
@@ -205,7 +207,7 @@ $("#registerDomain").on("click", function () {
       }
     });
 
-    xhr.open("POST", "https://67c438411d92.ngrok.io/domain/checkTime/");
+    xhr.open("POST", "http://localhost:3000/domain/checkTime/");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 

@@ -29,6 +29,10 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="assets/js/logout.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -59,16 +63,112 @@
   <!-- ======= home-top Section======= -->
   <section id="home-top" class="home-top align-items-center">
     <header class="section-header">
-      <p style="color: white; padding:2.5%">DASHBOARD</p>
+      <h1 style="color: white; padding: 2%; font-family: 'Satisfy', cursive;">
+        <span class="letters">Statistics</span>
+        </span>
+      </h1>
         
-      <h3 style="color: rgba(252, 244, 244, 0.801);"> Registered Domains</h3>
+     
     </header>
-    <div id="projects" class="container align-items-center">
+    <div id="projects" class="container col-lg-8">
+      <h3 style="color: rgb(255, 255, 255); text-align: left; font-weight: 900;">NETWORK DETAILS</h3>
+      <br>
+      <table class="table table-bordered" style="text-align: left ;color:white; border: 4px solid white; border-radius: 50px;">
+        <thead>
+          <tr >
+            <th  scope="col">Smart Contract Address</th>
+            <th  scope="col" id="blockHash"> 0x5599218B01a512A844B2a206b4044B8078392216</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr >
+            <th  scope="row">Hard Fork</th>
+            <th id="blockNumber">Berlin</th>
+          </tr>
+          <tr >
+            <th scope="row">BlockChain</th>
+            <th id="contractAd"></th>
+          </tr>
+          <tr >
+            <th scope="row">Number of Block Confirmations</th>
+            <th id="cumGas"></th>
+          </tr>
+          <tr>
+            <th scope="row">Average Gas</th>
+            <th id="from"></th>
+          </tr>
+          <tr>
+            <th scope="row">Init Block</th>
+            <th id="to"></th>
+          </tr>
+          <tr>
+            <th scope="row">Current Block</th>
+            <th id="gas"></th>
+          </tr>
+          <tr>
+            <th scope="row">Node Information</th>
+            <th id="data"></th>
+          </tr>
+          <tr>
+            <th scope="row">Transaction Count </th>
+            <th id="txhash"></th>
+          </tr>
+          
+        </tbody>
+      </table>
+      <br>
+      <h3 style="color: rgb(255, 255, 255); text-align: left; font-weight: 900;">TRANSACTION LIST</h3>
+      <br>
+      <table class="table table-bordered" style="text-align: left ;color:white; border: 4px solid white; border-radius: 50px;">
+        <thead>
+          <tr>
+            <th scope="col">Block Number</th>
+            <th scope="col" id="blockHash"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">TimeStamp</th>
+            <th id="blockNumber"></th>
+          </tr>
+          <tr>
+            <th scope="row">Transaction Hash</th>
+            <th id="contractAd"></th>
+          </tr>
+          <tr>
+            <th scope="row">From Address</th>
+            <th id="cumGas"></th>
+          </tr>
+          <tr>
+            <th scope="row">To Address</th>
+            <th id="from"></th>
+          </tr>
+          <tr>
+            <th scope="row">Gas</th>
+            <th id="to"></th>
+          </tr>
+          <tr>
+            <th scope="row">Gas Prize</th>
+            <th id="gas"></th>
+          </tr>
+          <tr>
+            <th scope="row">Cumulative Gas Used</th>
+            <th id="data"></th>
+          </tr>
+          <tr>
+            <th scope="row">Confirmations </th>
+            <th id="txhash"></th>
+          </tr>
+          
+        </tbody>
+      </table>
+
+
+
+
 
     </div>
-    <div id="pageno" class="container justify-content-center d-flex">
-
-    </div>
+  
   </section>
   <!-- End home-top -->
 
