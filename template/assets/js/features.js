@@ -71,8 +71,8 @@ $("#verifyAmount").on("click", function () {
     domainValue: $("#amount").val(),
   };
   console.log(data);
-  $("#amountDiv").empty();
-  $("#amountDiv").append(`<div font-size: 20px; padding: 2%;">
+  $("#amtDiv").empty();
+  $("#amtDiv").append(`<div font-size: 20px; padding: 2%;">
            Verifying.. Please hold on
          </div>`);
 
@@ -96,22 +96,18 @@ $("#verifyAmount").on("click", function () {
         if (reservationTime / 86400 >= 10 && reservationTime / 86400 <= 365) {
           console.log("verified");
           sessionStorage.setItem("timeVerified", true);
-          $("#amountDiv").empty();
-          $("#amountDiv").append(`<div font-size: 20px; padding: 2%;">
+          $("#amtDiv").empty();
+          $("#amtDiv").append(`<div font-size: 20px; padding: 2%;">
            Verified!
          </div>`);
-        } else if (reservationTime / 86400 < 10) {
-          alert("Amount too less!");
-          $("#amountDiv").empty();
-          $("#amountDiv").append(
-            `<button type="button" class="btn btn-light" id = "verifyAmount">verify </button>`
-          );
         } else {
-          alert("Amount too high!");
-          $("#amountDiv").empty();
-          $("#amountDiv").append(
+          $("#amtDiv").empty().append(
             `<button type="button" class="btn btn-light" id = "verifyAmount">verify </button>`
           );
+          if (reservationTime / 86400 < 10)
+            alert("Amount too less!");
+          else
+            alert("Amount too high!");
         }
       } else {
         try {
@@ -120,8 +116,8 @@ $("#verifyAmount").on("click", function () {
         } catch (err) {
           console.log(err);
           alert("Error verifying amount! Please contact admin.");
-          $("#amountDiv").empty();
-          $("#amountDiv").append(
+
+          $("#amtDiv").empty().append(
             `<button type="button" class="btn btn-light" id = "verifyAmount">verify </button>`
           );
         }
