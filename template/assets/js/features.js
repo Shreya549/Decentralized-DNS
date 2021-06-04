@@ -67,8 +67,8 @@ $("#setdomain").click(function () {
 $("#verifyAmount").on("click", function () {
   sessionStorage.setItem("isValueVerified", 0);
   var data = {
-    domainName: document.addDomain.name.value,
-    domainValue: document.addDomain.amount.value,
+    domainName: sessionStorage.getItem("domainName"),
+    domainValue: $("#amount").val(),
   };
   console.log(data);
   $("#amountDiv").empty();
