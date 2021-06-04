@@ -72,7 +72,7 @@ function dashboard() {
       } else {
         try {
           var data = JSON.parse(this.responseText);
-          alert(Object.values(data)[0][0]);
+          alert(Object.values(data)[0]);
         } catch (err) {
           console.log(err);
           alert("Error getting network details! Please contact admin.");
