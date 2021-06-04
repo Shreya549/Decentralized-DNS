@@ -10,9 +10,19 @@ function stats() {
         var data = JSON.parse(this.responseText);
 
         $("#stats")
-          .append(`<table class="table table-bordered" style="text-align: left ;color:white; border: 4px solid white; border-radius: 50px;">
+          .append(`
+          <table class="table table-bordered" style="text-align: left ;color:white; border: 4px solid white; border-radius: 50px;">
+          <thead>
+          <tr style="font-weight-900; font-size: 20px "class="table-light">
+          <th  scope="col">Total No of Accounts in BlockChain</th>
+          <th  scope="col" id="blockHash"></th>
+          </tr>
+          </thead>
+          </table>
+          
+          <table class="table table-bordered" style="text-align: left ;color:white; border: 4px solid white; border-radius: 50px;">
         <thead>
-        <tr >
+        <tr style="font-weight-900; font-size: 20px "class="table-light">
             <th  scope="col">Total Domains on Network</th>
             <th  scope="col" id="blockHash">${data.totalDomains}</th>
           </tr>
