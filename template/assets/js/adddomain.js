@@ -49,7 +49,7 @@ $("#verifyName").on("click", function () {
       } else {
         try {
           var data = JSON.parse(this.responseText);
-          alert(Object.values(data)[0][0]);
+          alert(Object.values(data)[0]);
         } catch (err) {
           console.log(err);
           alert("Error verifying name! Please contact admin.");
@@ -122,7 +122,7 @@ $("#verifyAmount").on("click", function () {
       } else {
         try {
           var data = JSON.parse(this.responseText);
-          alert(Object.values(data)[0][0]);
+          alert(Object.values(data)[0]);
         } catch (err) {
           console.log(err);
           alert("Error verifying amount! Please contact admin.");
@@ -200,7 +200,7 @@ $("#registerDomain").on("click", function () {
         } else {
           try {
             var data = JSON.parse(this.responseText);
-            alert(Object.values(data)[0][0]);
+            alert(Object.values(data)[0]);
           } catch (err) {
             console.log(err);
             alert("Error in registering domain! Please try again");

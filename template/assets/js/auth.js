@@ -60,7 +60,7 @@ $("#stuSignupBtn").on("click", function () {
       } else {
         try {
           var data = JSON.parse(this.responseText);
-          alert(Object.values(data)[0][0]);
+          alert(Object.values(data)[0]);
         } catch (err) {
           alert("Error signing up! Please contact admin.");
         }
@@ -124,7 +124,7 @@ $("#stuSigninBtn").on("click", function () {
       } else {
         try {
           var data = JSON.parse(this.responseText);
-          alert(Object.values(data)[0][0]);
+          alert(Object.values(data)[0]);
         } catch (err) {
           alert("Error signing in! Please contact admin.");
         }
