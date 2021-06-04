@@ -141,7 +141,7 @@ $("#extendDomain").on("click", function () {
   } else {
     var data = {
       domainName: sessionStorage.getItem("domainName"),
-    domainValue: $("#amount").val(),
+      value: $("#amount").val(),
     };
 
     console.log(data);
