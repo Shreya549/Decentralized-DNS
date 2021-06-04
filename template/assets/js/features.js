@@ -7,9 +7,77 @@ function features(domainName) {
 function dispName() {
   const domainName = sessionStorage.getItem("domainName");
   $("#domName").text(`${domainName}`);
+
+  const dataDom = {
+    domainName: domainName,
+  };
+
+  console.log(dataDom);
+
+  var xhr = new XMLHttpRequest();
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+      if (this.status >= 200 && this.status < 400) {
+        var data = JSON.parse(this.responseText);
+        console.log(data.data);
+        if (data.data.length >= 4) {
+          $("#addDomain").remove();
+          $("#dom").prepend(`<div font-size: 20px; padding: 2%;">
+           ${data.data}
+         </div>`);
+        } else {
+          $("#formAdd").append(`<form name="addDomain" id = 'addDomain'>
+              <div class="form-group row">
+                <label for="text" class="col-4 col-form-label">Set Domain Address</label>
+                <div class="col-lg-4">
+                  <div class="input-group" id='simple'>
+                    <input id="domAdd" name="domAdd" placeholder="Enter the IP here" type="text" required="required"
+                      class="form-control">
+
+                  </div>
+                </div>
+
+                <div class="col-lg-1" id='amountDiv'>
+                  <button style=" font-weight: 700; box-shadow: 2px 2px 10px 1px rgb(173, 165, 165); " type="button"
+                    class="btn btn-light" id="setdomain" onClick = 'setDomain()'>SET</button>
+                </div>
+              </div>
+
+              <div class="form-group row" id='custom'>
+                <label for="sdate" class="col-4 col-form-label">Set Custom Domain Name</label>
+                <div class="col-lg-4">
+                  <input id="sdate" name="name" placeholder="If availale enter the domain name" type="text"
+                    class="form-control" required="required">
+                </div>
+                <div class="col-lg-1" id='amountDiv'>
+                  <button style=" font-weight: 700; box-shadow: 2px 2px 10px 1px rgb(173, 165, 165); " type="button"
+                    class="btn btn-light" id="verifyAmount">SET </button>
+                </div>
+                <div class="col-lg-1" id="nameDiv">
+                  <button style=" font-weight: 700;" type="button" class="btn btn-light" id="verifyName">VERIFY</button>
+                </div>
+
+              </div>
+
+
+            </form>`);
+        }
+      }
+
+      console.log(this.responseText);
+    }
+  });
+
+  xhr.open("POST", "http://localhost:3000/domain/get");
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
+  xhr.send(JSON.stringify(dataDom));
 }
 
-$("#setdomain").click(function () {
+function setDomain() {
+  let domainAddress = document.getElementById("domAdd").value;
   var data = {
     domainName: sessionStorage.getItem("domainName"),
     domainAddress: document.getElementById("domAdd").value,
@@ -25,7 +93,7 @@ $("#setdomain").click(function () {
         // The request has been completed successfully
         var data = JSON.parse(this.responseText);
 
-        console.log('data :>> ', data);
+        console.log("data :>> ", data);
         console.log(data.TransactionReceipt);
         sessionStorage.setItem("TxReceipt", data.TransactionReceipt);
 
@@ -35,7 +103,7 @@ $("#setdomain").click(function () {
           $("#simple").empty();
           console.log(data);
           $("#simple").append(`<div font-size: 20px; padding: 2%;">
-           ${data.domainAddress}
+           ${domainAddress}
          </div>`);
         } else {
           alert("Error in setting domain address! Try again");
@@ -60,26 +128,25 @@ $("#setdomain").click(function () {
   xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 
   xhr.send(JSON.stringify(data));
-});
+}
 
 $("#delDomAdd").click(function () {
   var data = JSON.stringify({
-    "domainName": sessionStorage.getItem("domainName")
+    domainName: sessionStorage.getItem("domainName"),
   });
 
   var xhr = new XMLHttpRequest();
-  xhr.withCredentials = true;
 
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === 4) {
       if (this.status >= 200 && this.status < 400) {
         // The request has been completed successfully
         var data = JSON.parse(this.responseText);
-        console.log('this.responseText :>> ', this.responseText);
-        $("#delDomAdd").attr('disabled').empty().append("Domain deleted.")
+        console.log("this.responseText :>> ", this.responseText);
+        $("#delDomAdd").attr("disabled").empty().append("Domain deleted.");
       } else {
         var data = JSON.parse(this.responseText);
-        console.log('this.responseText :>> ', this.responseText);
+        console.log("this.responseText :>> ", this.responseText);
         alert(Object.values(data)[0]);
       }
     }
