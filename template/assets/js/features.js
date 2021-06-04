@@ -1,6 +1,63 @@
-function features(domainname)
-{
-    window.location.replace("features.html");
-    $("#setdomain").click {
-        console.log("hello")};
+function features(domainName) {
+  sessionStorage.setItem("domainName", domainName);
+  console.log(sessionStorage.getItem("domainName"));
+  window.location.replace("features.html");
 }
+
+function dispName() {
+  const domainName = sessionStorage.getItem("domainName");
+  $("#domName").text(`${domainName}`);
+}
+
+$("#setdomain").click(function () {
+  var data = {
+    domainName: sessionStorage.getItem("domainName"),
+    domainAddress: document.getElementById("domAdd").value,
+  };
+
+  console.log(data);
+
+  var xhr = new XMLHttpRequest();
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+      if (this.status >= 200 && this.status < 400) {
+        // The request has been completed successfully
+        var data = JSON.parse(this.responseText);
+        console.loh;
+        console.log(data);
+        console.log(data.TransactionReceipt);
+        sessionStorage.setItem("TxReceipt", data.TransactionReceipt);
+
+        var set = data.set;
+        if (set == 1) {
+          $("#custom").hide();
+          $("#simple").empty();
+          console.log(data);
+          $("#simple").append(`<div font-size: 20px; padding: 2%;">
+           ${data.domainAddress}
+         </div>`);
+        } else {
+          alert("Error in setting domain address! Try again");
+          window.location.reload();
+        }
+      } else {
+        try {
+          var data = JSON.parse(this.responseText);
+          alert(Object.values(data)[0][0]);
+        } catch (err) {
+          console.log(err);
+
+          alert("Error in setting domain address! Contact admin");
+          window.location.reload();
+        }
+      }
+    }
+  });
+
+  xhr.open("POST", "https://ether.jugaldb.com/domain/set");
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
+
+  xhr.send(JSON.stringify(data));
+});
