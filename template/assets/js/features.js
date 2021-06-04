@@ -140,13 +140,13 @@ $("#extendDomain").on("click", function () {
     alert("Verify Value first");
   } else {
     var data = {
-      domainName: document.addDomain.name.value,
-      domainValue: document.addDomain.amount.value,
+      domainName: sessionStorage.getItem("domainName"),
+    domainValue: $("#amount").val(),
     };
 
     console.log(data);
 
-    $("#finalReg").empty().append(`<div font-size: 20px; padding: 2%;">
+    $("#extDiv").empty().append(`<div font-size: 20px; padding: 2%;">
            extending... Please hold on
          </div>`);
 
@@ -167,9 +167,9 @@ $("#extendDomain").on("click", function () {
 
           if (data.TransactionReceipt.status == true) {
             console.log("extended");
-            $("#finalReg").empty();
+            $("#extDiv").empty();
 
-            $("#finalReg").append(
+            $("#extDiv").append(
               `Your domain has been extended for ${Math.floor(
                 reservationTime / 86400
               )} days successfully!`
@@ -181,8 +181,8 @@ $("#extendDomain").on("click", function () {
             );
           } else {
             alert("Error in extending domain! Please try again");
-            $("#finalReg").empty();
-            $("#finalReg").append(
+            $("#extDiv").empty();
+            $("#extDiv").append(
               `<button type="button" class="btn btn-light" id = 'extendDomain'>extend</button>`
             );
           }
@@ -193,8 +193,8 @@ $("#extendDomain").on("click", function () {
           } catch (err) {
             console.log(err);
             alert("Error in extending domain! Please try again");
-            $("#finalReg").empty();
-            $("#finalReg").append(
+            $("#extDiv").empty();
+            $("#extDiv").append(
               `<button type="button" class="btn btn-light" id = 'extendDomain'>extend</button>`
             );
           }
