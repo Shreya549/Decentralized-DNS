@@ -68,7 +68,6 @@ $("#delDomAdd").click(function () {
   });
 
   var xhr = new XMLHttpRequest();
-  xhr.withCredentials = true;
 
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === 4) {
@@ -76,7 +75,8 @@ $("#delDomAdd").click(function () {
         // The request has been completed successfully
         var data = JSON.parse(this.responseText);
         console.log('this.responseText :>> ', this.responseText);
-        $("#delDomAdd").attr('disabled').empty().append("Domain deleted.")
+        sessionStorage.setItem("isDomainDeleted", 1);
+        $("#delDomAdd").attr('disabled', '').empty().append("Domain deleted.")
       } else {
         var data = JSON.parse(this.responseText);
         console.log('this.responseText :>> ', this.responseText);
@@ -90,4 +90,38 @@ $("#delDomAdd").click(function () {
   xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 
   xhr.send(data);
+});
+
+$("#pullDeposit").click(function () {
+  c
+  var data = "";
+  if (sessionStorage.getItem("isDomainDeleted")) {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        if (this.status >= 200 && this.status < 400) {
+          // The request has been completed successfully
+          var data = JSON.parse(this.responseText);
+          console.log('this.responseText :>> ', this.responseText);
+          window.open("dashboard.html", "_self");
+          $("#pullDeposit").attr('disabled', '').empty().append("Pulled.")
+        } else {
+          var data = JSON.parse(this.responseText);
+          console.log('this.responseText :>> ', this.responseText);
+          alert(Object.values(data)[0]);
+        }
+      }
+    });
+
+    xhr.open("POST", "https://ether.jugaldb.com/domain/pull/");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
+
+    xhr.send(data);
+  }
+  else {
+    alert("Please delete the domain name first!")
+  }
 });
