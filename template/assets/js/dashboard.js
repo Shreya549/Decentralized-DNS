@@ -18,7 +18,7 @@ function dashboard() {
         for (let i = 0; i < numOfDomains; i++) {
           $("#domNames").append(`<tr>
             <th class="align-middle" scope="col">${domainNames[i]}</th>
-            <th scope="col" id="blockHash" style="text-align: right;">  <button type="button" style="font-weight: 900; " class="btn btn-light btn-" id = 'registerDomain'>Change the features</button></th>
+            <th scope="col" id="blockHash" style="text-align: right;">  <button type="button" style="font-weight: 900; " id="${domainNames[i]}" onClick='features(this.id)' class="btn btn-light btn" >Change the features</button></th>
           </tr>`);
         }
 

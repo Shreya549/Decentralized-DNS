@@ -239,7 +239,7 @@ section {
 	justify-content: space-between;
 	padding: 10px 0 10px 30px;
 	font-family: "Nunito", sans-serif;
-	font-size: 20px;
+	font-size: 15px;
 	font-weight: 700;
 	color: grey;
 	white-space: nowrap;
@@ -260,7 +260,7 @@ section {
 
 .navbar .btn-nav,
 .btn-card {
-	background:grey;
+	background:rgb(196, 196, 196);
 	padding: 8px 20px;
 	margin-left: 30px;
 	border-radius: 4px;
