@@ -31,7 +31,7 @@ function dispName() {
           );
         if (data.data.length >= 4) {
           $("#edit").hide();
-          $("#addDomain").remove();
+          $("#addDomain").empty();
           $("#formAdd").value(`IP Address = 
            ${data.data}`);
         } else {
