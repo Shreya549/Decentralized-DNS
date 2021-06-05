@@ -7,6 +7,10 @@ function features(domainName) {
 function dispName() {
   const domainName = sessionStorage.getItem("domainName");
   $("#domName").text(`${domainName}`);
+  $("#formAdd")
+    .prepend(`<div font-size: 20px; padding: 2%;">Fetching details... 
+           
+         </div>`);
 
   const dataDom = {
     domainName: domainName,
@@ -20,13 +24,18 @@ function dispName() {
     if (this.readyState === 4) {
       if (this.status >= 200 && this.status < 400) {
         var data = JSON.parse(this.responseText);
-        console.log(data.data);
+          console.log(data.data);
+          sessionStorage.setItem(
+            "TxReceipt",
+            JSON.stringify(data.TransactionReceipt)
+          );
         if (data.data.length >= 4) {
+          $("#edit").hide();
           $("#addDomain").remove();
-          $("#formAdd").prepend(`<div font-size: 20px; padding: 2%;">IP Address = 
-           ${data.data}
-         </div>`);
+          $("#formAdd").value(`IP Address = 
+           ${data.data}`);
         } else {
+          $("#formAdd").empty();
           $("#formAdd").append(`<form name="addDomain" id = 'addDomain'>
               <div class="form-group row">
                 <label for="text" class="col-4 col-form-label">Set Domain Address</label>
@@ -57,10 +66,7 @@ function dispName() {
                 <div class="col-lg-1" id="nameDiv">
                   <button style=" font-weight: 700;" type="button" class="btn btn-light" id="verifyName">VERIFY</button>
                 </div>
-
               </div>
-
-
             </form>`);
         }
       }
@@ -97,7 +103,11 @@ function setDomain() {
         console.log(data.TransactionReceipt);
         sessionStorage.setItem("TxReceipt", data.TransactionReceipt);
 
-        var set = data.set;
+          var set = data.set;
+          sessionStorage.setItem(
+            "TxReceipt",
+            JSON.stringify(data.TransactionReceipt)
+          );
         if (set == 1) {
           $("#formAdd").empty();
           $("#formAdd").append(`<div font-size: 20px; padding: 2%;">
@@ -154,10 +164,13 @@ $("#verifyAmount").on("click", function () {
       if (this.status >= 200 && this.status < 400) {
         // The request has been completed successfully
         var data = JSON.parse(this.responseText);
-        sessionStorage.setItem("isValueVerified", 1)
+        sessionStorage.setItem("isValueVerified", 1);
         let reservationTime = data.reservationTime;
         console.log(data.TransactionReceipt);
-        sessionStorage.setItem("TxReceipt", data.TransactionReceipt);
+        sessionStorage.setItem(
+          "TxReceipt",
+          JSON.stringify(data.TransactionReceipt)
+        );
 
         if (reservationTime / 86400 >= 10 && reservationTime / 86400 <= 365) {
           console.log("verified");
@@ -167,13 +180,13 @@ $("#verifyAmount").on("click", function () {
            Verified!
          </div>`);
         } else {
-          $("#amtDiv").empty().append(
-            `<button type="button" class="btn btn-light" id = "verifyAmount">verify </button>`
-          );
-          if (reservationTime / 86400 < 10)
-            alert("Amount too less!");
-          else
-            alert("Amount too high!");
+          $("#amtDiv")
+            .empty()
+            .append(
+              `<button type="button" class="btn btn-light" id = "verifyAmount">verify </button>`
+            );
+          if (reservationTime / 86400 < 10) alert("Amount too less!");
+          else alert("Amount too high!");
         }
       } else {
         try {
@@ -183,9 +196,11 @@ $("#verifyAmount").on("click", function () {
           console.log(err);
           alert("Error verifying amount! Please contact admin.");
 
-          $("#amtDiv").empty().append(
-            `<button type="button" class="btn btn-light" id = "verifyAmount">verify </button>`
-          );
+          $("#amtDiv")
+            .empty()
+            .append(
+              `<button type="button" class="btn btn-light" id = "verifyAmount">verify </button>`
+            );
         }
       }
     }
@@ -200,9 +215,7 @@ $("#verifyAmount").on("click", function () {
 
 // extend ----------------------------------------------------------------
 $("#extendDomain").on("click", function () {
-  if (
-    sessionStorage.getItem("isValueVerified") == 0
-  ) {
+  if (sessionStorage.getItem("isValueVerified") == 0) {
     alert("Verify Value first");
   } else {
     var data = {
@@ -229,7 +242,11 @@ $("#extendDomain").on("click", function () {
           // The request has been completed successfully
           var data = JSON.parse(this.responseText);
 
-          let reservationTime = data.reservationTime;
+            let reservationTime = data.reservationTime;
+            sessionStorage.setItem(
+              "TxReceipt",
+              JSON.stringify(data.TransactionReceipt)
+            );
 
           if (data.TransactionReceipt.status == true) {
             console.log("extended");
@@ -241,7 +258,10 @@ $("#extendDomain").on("click", function () {
               )} days successfully!`
             );
 
-            sessionStorage.setItem("TxReceipt", JSON.stringify(data.TransactionReceipt));
+            sessionStorage.setItem(
+              "TxReceipt",
+              JSON.stringify(data.TransactionReceipt)
+            );
             $("#receipt").append(
               `<a href="receipt.html" style="color: white; font-weight: bold; ">CLICK HERE TO VIEW YOUR TRANSACTION RECEIPT</a>`
             );
@@ -290,9 +310,13 @@ $("#delDomAdd").click(function () {
       if (this.status >= 200 && this.status < 400) {
         // The request has been completed successfully
         var data = JSON.parse(this.responseText);
-        console.log('this.responseText :>> ', this.responseText);
-        sessionStorage.setItem("isDomainDeleted", 1);
-        $("#delDomAdd").attr('disabled', '').empty().append("Domain deleted.")
+        console.log("this.responseText :>> ", this.responseText);
+          sessionStorage.setItem("isDomainDeleted", 1);
+          sessionStorage.setItem(
+            "TxReceipt",
+            JSON.stringify(data.TransactionReceipt)
+          );
+        $("#delDomAdd").attr("disabled", "").empty().append("Domain deleted.");
       } else {
         var data = JSON.parse(this.responseText);
         console.log("this.responseText :>> ", this.responseText);
@@ -311,23 +335,25 @@ $("#delDomAdd").click(function () {
 // pull deposit --------------------------------------------------------------
 
 $("#pullDeposit").click(function () {
-  
   var data = "";
   if (sessionStorage.getItem("isDomainDeleted")) {
-
     var xhr = new XMLHttpRequest();
 
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
         if (this.status >= 200 && this.status < 400) {
           // The request has been completed successfully
-          var data = JSON.parse(this.responseText);
-          console.log('this.responseText :>> ', this.responseText);
+            var data = JSON.parse(this.responseText);
+            sessionStorage.setItem(
+              "TxReceipt",
+              JSON.stringify(data.TransactionReceipt)
+            );
+          console.log("this.responseText :>> ", this.responseText);
           window.open("dashboard.html", "_self");
-          $("#pullDeposit").attr('disabled', '').empty().append("Pulled.")
+          $("#pullDeposit").attr("disabled", "").empty().append("Pulled.");
         } else {
           var data = JSON.parse(this.responseText);
-          console.log('this.responseText :>> ', this.responseText);
+          console.log("this.responseText :>> ", this.responseText);
           alert(Object.values(data)[0]);
         }
       }
@@ -338,8 +364,7 @@ $("#pullDeposit").click(function () {
     xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 
     xhr.send(data);
-  }
-  else {
-    alert("Please delete the domain name first!")
+  } else {
+    alert("Please delete the domain name first!");
   }
 });
