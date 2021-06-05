@@ -5,7 +5,7 @@ function getReceipt() {
   } else {
     var tx = JSON.parse(sessionStorage.getItem("TxReceipt"));
     $("#receiptHeader").append(
-      `<a style="color: white; font-weight:700" onMouseOut="this.style.color='white'" onMouseOver="this.style.color='blue'" href="https://ropsten.etherscan.io/tx/${tx.transactionHash}" target = "_blank">Verify Transaction on EtherScan</a>`
+      `<a style="font-size:20px; color: white; font-weight:700" onMouseOut="this.style.color='white'" onMouseOver="this.style.color='blue'" href="https://ropsten.etherscan.io/tx/${tx.transactionHash}" target = "_blank">Verify Transaction on EtherScan</a>`
     );
 
     $("#blockHash").append(tx.blockHash);
