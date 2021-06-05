@@ -56,19 +56,23 @@ function dispName() {
               <div class="form-group row" id='custom'>
                 <label for="sdate" class="col-4 col-form-label">Set Custom Domain Name</label>
                 <div class="col-lg-4">
-                  <input id="sdate" name="name" placeholder="If availale enter the domain name" type="text"
+                  <input id="sdate" name="name" placeholder="If available enter the domain name" type="text"
                     class="form-control" required="required">
                 </div>
                 <div class="col-lg-1" id='amountDiv'>
                   <button style=" font-weight: 700; box-shadow: 2px 2px 10px 1px rgb(173, 165, 165); " type="button"
-                    class="btn btn-light" id="verifyAmount">SET </button>
+                    class="btn btn-light" id="verifyAmount">SET</button>
                 </div>
                 <div class="col-lg-1" id="nameDiv">
-                  <button style=" font-weight: 700;" type="button" class="btn btn-light" id="verifyName">VERIFY</button>
+                  <button style=" font-weight: 700;" type="button" class="btn btn-light" id="verifyName" onClick = 'verifyMine()'>VERIFY</button>
                 </div>
               </div>
             </form>`);
         }
+      }
+      if (this.status >= 500) {
+        alert("You have pending transactions");
+        window.location.reload();
       }
 
       console.log(this.responseText);
@@ -136,6 +140,79 @@ function setDomain() {
 
   xhr.send(JSON.stringify(data));
 }
+
+//set custom domain
+function verifyMine() {
+  var data = {
+    domainName: document.getElementById("sdate").value,
+  };
+  console.log(data);
+  $("#nameDiv").empty();
+  $("#nameDiv").append(`<div font-size: 20px; padding: 2%;">
+           Verifying.. Please hold on
+         </div>`);
+
+  // Enter regex for domain name and paisa
+
+  var xhr = new XMLHttpRequest();
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+      //   console.log("this.responseText :>> ", this.responseText);
+      console.log("this.status :>> ", this.status);
+
+      if (this.status >= 200 && this.status < 400) {
+        // The request has been completed successfully
+        var data = JSON.parse(this.responseText);
+
+        let isReserved = data.isReserved;
+        console.log(data.TransactionReceipt);
+        sessionStorage.setItem(
+          "TxReceipt",
+          JSON.stringify(data.TransactionReceipt)
+        );
+        console.log(sessionStorage.getItem("TxReceipt"));
+
+        if (isReserved == 1) {
+          console.log("Verified");
+          sessionStorage.setItem("nameVerified", true);
+          // sessionStorage.setItem("TxReceipt", data.TransactionReceipt);
+          $("#nameDiv").empty();
+          $("#nameDiv").append(`<div font-size: 20px; padding: 2%;">
+           Verified!                
+         </div>`);
+        } else {
+          alert("Domain name not reserved by you!");
+          $("#nameDiv").empty();
+          $("#nameDiv").append(
+            `<button type="button" class="btn btn-light" id = "verifyName">verify </button>`
+          );
+        }
+      } else {
+        try {
+          var data = JSON.parse(this.responseText);
+        } catch (err) {
+          console.log(err);
+          alert("Error verifying name! Please contact admin.");
+          $("#nameDiv").empty();
+          $("#nameDiv").append(
+            `<button type="button" class="btn btn-light" id = "verifyName">verify</button>`
+          );
+        }
+      }
+    }
+  });
+
+  xhr.open("POST", "https://ether.jugaldb.com/domain/isReserved/");
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
+
+  xhr.send(JSON.stringify(data));
+}
+
+// set custom
+
+
 
 // verify amount ----------------------------------------------------------------
 
