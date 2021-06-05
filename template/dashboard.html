@@ -9,8 +9,6 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  
-
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -25,7 +23,8 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Merienda:wght@400;700&display=swap"
+    rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -33,39 +32,39 @@
   <script src="assets/js/features.js"></script>
   <style>
     .home-top {
-	width: 100%;
-	height: auto;
+      width: 100%;
+      height: auto;
 
-	background-size: cover;
-}
+      background-size: cover;
+    }
   </style>
 </head>
 
-<body onload = "dashboard()"">
+<body onload="dashboard()"">
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+  <header id=" header" class="header fixed-top">
+  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="./" class="logo d-flex align-items-center">
-        <img src="assets/img/favicon.png" alt="Logo">
-      </a>
+    <a href="./" class="logo d-flex align-items-center">
+      <img src="assets/img/favicon.png" alt="Logo">
+    </a>
 
-      <div id="welcome">
-        
-      </div>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a id="add" class="btn btn-nav" href="receipt.html">Receipt Generated </a></li>
-          <li><a id="add" class="btn btn-nav" href="stats.html">Statistics </a></li>
-          
-          <li><a id="add" class="btn btn-nav" href="addnewdomain.html">Add new Domain</a></li>
-          <li><a id="logout" class="btn btn-nav">Log out</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
+    <div id="welcome">
 
     </div>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a id="add" class="btn btn-nav" href="receipt.html">Receipt Generated </a></li>
+        <li><a id="add" class="btn btn-nav" href="stats.html">Statistics </a></li>
+
+        <li><a id="add" class="btn btn-nav" href="addnewdomain.html">Add new Domain</a></li>
+        <li><a id="logout" class="btn btn-nav">Log out</a></li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+
+  </div>
   </header>
   <!-- End Header -->
 
@@ -73,28 +72,40 @@
   <section id="home-top" class="home-top align-items-center">
     <header class="section-header">
       <p style="color: white; padding:3%; font-family: 'Merienda', cursive;">My Wallet</p>
-      <button type="button" style="font-weight: 900; padding: 1%;" class="btn btn-light btn-lg" id = 'registerDomain'></button>
-     <center> <hr width="75%" style="border: 7px solid white;" size="10"> </center>
-      <h3 style="color: rgba(252, 244, 244, 0.801); padding: 50px 0px 0px 0px ; font-weight: 900;" id = 'regDomHead'></h3>
-      
+      <button type="button" style="font-weight: 900; padding: 1%;" class="btn btn-light btn-lg"
+        id='registerDomain'></button> 
+      <center>
+        <hr width="75%" style="border: 7px solid white;" size="10">
+        <h3 id="userData" style="color: azure;"></h3>
+        <script>
+          $("#userData").empty().append(`
+          Name: ${sessionStorage.getItem("name")}
+          <br><br>
+          Account address: ${sessionStorage.getItem("accountAddress")}
+          `);
+        </script>
+      </center>
+      <h3 style="color: rgba(252, 244, 244, 0.801); padding: 25px 0px 0px 0px ; font-weight: 900;" id='regDomHead'></h3>
+
     </header>
     <div id="projects" class="container align-items-center col-lg-6">
-      <table  class="table table-bordered " style=" text-align: left ;color:white;  border-radius: 50px;" style="border-radius: 50%">
-        <tbody id = 'domNames'>
+      <table class="table table-bordered " style=" text-align: left ;color:white;  border-radius: 50px;"
+        style="border-radius: 50%">
+        <tbody id='domNames'>
         </tbody>
       </table>
     </div>
 
     <br>
-   <br>
-  
+    <br>
+
     <div id="projects" class="container col-lg-8">
       <h3 style="color: rgb(255, 255, 255); text-align: center; font-weight: 900;">MY TRANSACTIONS</h3>
       <br>
-    <div id = "tx">
-    </div>
+      <div id="tx">
+      </div>
 
-  </div>
+    </div>
 
 
   </section>
@@ -195,7 +206,7 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
-<script src="assets/js/dashboard.js"></script>
+  <script src="assets/js/dashboard.js"></script>
 
 </body>
 
