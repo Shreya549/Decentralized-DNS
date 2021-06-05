@@ -10,11 +10,11 @@ function stats() {
         var data = JSON.parse(this.responseText);
 
         $("#stats").append(`
-          <table class="table table-bordered" style="text-align: left ;color:white; border: 4px solid white; border-radius: 50px;">
+          <table class="table table-bordered" style="color:white; border: 4px solid white; border-radius: 50px;">
           <thead>
-          <tr style="font-weight-900; font-size: 20px "class="table-light">
+          <tr style="font-weight-900; font-size: 25px "class="table-primary">
           <th  scope="col">Total No of Accounts in BlockChain</th>
-          <th  scope="col" id="totalUsers">${data.totalUsers}</th>
+          <th style="text-align: left ;" scope="col" id="totalUsers">${data.totalUsers}</th>
           </tr>
           </thead>
           </table>

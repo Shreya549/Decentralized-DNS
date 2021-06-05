@@ -30,7 +30,38 @@
   <link href="https://fonts.googleapis.com/css2?family=Calligraffitti&family=Euphoria+Script&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-</head>
+
+    <script>
+
+      //Input domainName, paymentAmount
+      function calculateTime()
+      {
+       var domainName=  document.getElementById("dnamei").value;
+       var paymentAmount =  document.getElementById("amounti").value;
+       var priceOneByte = 16000000000000000;  //wei
+      var priceFactor = 5;
+      var minimum = 10; //days
+      var maximum = 365; //days
+      var pa=parseInt(paymentAmount);
+      var length = domainName.length;
+      var priceSecond = priceOneByte/(priceFactor**length);
+      var ReservationTime = pa/priceSecond;
+      console.log(ReservationTime);
+      var ReservationTimeinDays = (ReservationTime)/(24*60*60);
+      console.log(ReservationTimeinDays);
+      if(ReservationTimeinDays < minimum)
+      {
+      document.getElementById("demo").innerHTML ="Amount is lower than expected";
+      }
+      else if(ReservationTimeinDays > maximum)
+      {
+      document.getElementById("demo").innerHTML ="Amount is higher than expected";
+      }
+      else document.getElementById("demo").innerHTML ="You will be able to register for "+parseInt(ReservationTimeinDays)+ " days";
+    }
+      
+      </script>
+  </head>
 
 <body>
   <!-- ======= Header ======= -->
@@ -109,9 +140,42 @@
           </p>
           
         </div>
-        <p>You can reserve Domain Names, attach Domain Addresses to your reserved Domains, visualize your wallet, Extend or Delete Reservation Times, and a lots more.
+        <p style="font-weight: 700;">You can reserve Domain Names, attach Domain Addresses to your reserved Domains, visualize your wallet, Extend or Delete Reservation Times, and a lots more.
           All with the help of this platform.
         </p>
+    
+        <div id= "projects" class="container">
+          <h1 style=" font-weight: 900;font-size: 28px;"> CALCULATE THE RESERVATION TIME</h1><br>
+          <div class="row">
+        
+          <font style="color: black; font-weight: bold; font-size: 20px;">
+          <div class=" col-lg-12 d-flex flex-column justify-content-center">
+          <form name="addDomain">
+            <div class="form-group row">
+              <label for="sdate" class="col-4 col-form-label">DOMAIN NAME TO BE REGISTERED</label>
+              <div class="col-lg-4">
+                  <input id="dnamei" name="dnamei" placeholder="Enter the domain name" type="text" class="form-control"
+                      required="required">
+              </div>
+           
+  
+          </div>
+     
+          <div class="form-group row">
+            <label for="text" class="col-4 col-form-label">AMOUNT IN WEI</label>
+              <div class="col-lg-4">
+                  <div class="input-group">
+                      <input id="amounti" name="amount" placeholder="Insert the amount here" type="text" required="required"
+                          class="form-control">
+                     
+                  </div>
+              </div>
+              <div class="col-lg-2" id = 'reservetime'>
+                <button style="font-weight: 700;"type="button" class="btn btn-light" id = "verifyAmount" onclick="calculateTime()">CALCULATE </button>
+              </div>
+          </div>
+          <br>
+          <p id="demo"></p>
   </section>
   <!-- End Home-top -->
 
@@ -185,7 +249,7 @@
         </div>
 
       </div>
-
+      
     </section>
     <!-- End Auth Section -->
     
@@ -244,28 +308,35 @@
 
         <div class="row gy-4">
 
-          <div class="col-lg-6">
+          <div class="col-lg-12">
 
             <div class="row gy-4">
-              <div class="col-md-6">
+              <div class="col-md-3">
                 <div class="info-box">
                   <i class="bi bi-geo-alt"></i>
                   <h3>Address</h3>
-                  <p>Vellore Institute of Technology,<br>Vellore, India 632014</p>
+                  <p>Vellore Institute of Technology,<br>Vellore, India 632014 <br> www.vit.ac.in</p>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-3">
                 <div class="info-box">
                   <i class="bi bi-telephone"></i>
                   <h3>Call Us</h3>
-                  <p>+91 755 093 0806<br>+91 807 245 8976</p>
+                  <p>+91 755 093 0806<br>+91 776 281 9065 <br> +91 708 262 4978 </p>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-3">
                 <div class="info-box">
                   <i class="bi bi-envelope"></i>
                   <h3>Email Us</h3>
-                  <p>abhinabamitra19@gmail.com<br>joshi.jai232@gmail.com</p>
+                  <p>abhinabamitra19@gmail.com<br>shreyachatterjeeshreyash@gmail.com <br> hritishak@gmail.com</p>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="info-box">
+                  <i class="bi bi-github"></i>
+                  <h3>Github</h3>
+                  <p>abhinabamitra.github.io/Portfolio/<br>shreya549.github.io/My-Portfolio/<br>hritisha.github.io/Hritisha_Portfolio/</p>
                 </div>
               </div>
 
@@ -273,38 +344,7 @@
 
           </div>
 
-          <div class="col-lg-6">
-            <form method="post" class="php-email-form">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name">
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject">
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message"></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
-              </div>
-            </form>
-
-          </div>
+      
 
         </div>
 
