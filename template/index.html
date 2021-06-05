@@ -30,7 +30,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Calligraffitti&family=Euphoria+Script&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-</head>
+
+    <!-- <script>
+
+      //Input domainName, paymentAmount
+       var domainName= "mitra.com";// document.getElementById("dnamei") ;
+       var paymentAmount =  "100000000000000000"  //document.getElementById("amounti");
+      var priceOneByte = 0.016; //ether
+      var priceFactor = 5;
+      var minimum = 10; //days
+      var maximum = 365; //days
+      var pa=parseInt(paymentAmount);
+      var length = domainName.length;
+      var priceSecond = priceOneByte/(priceFactor*length);
+      var ReservationTime = pa/priceSecond;
+      console.log(ReservationTime);
+      var ReservationTimeinDays = (ReservationTime)/(24*60*60);
+      console.log(ReservationTimeinDays);
+      if(ReservationTimeinDays < minimum)
+      {
+      document.getElementById("demo").innerHTML ="Amount is lower than expected";
+      }
+      else if(ReservationTimeinDays > maximum)
+      {
+      document.getElementById("demo").innerHTML ="Amount is higher than expected";
+      }
+      else document.getElementById("demo").innerHTML ="You will be able to register for "+ReservationTimeinDays+ " days";
+      
+      
+      </script> -->
+  </head>
 
 <body>
   <!-- ======= Header ======= -->
@@ -109,9 +138,41 @@
           </p>
           
         </div>
-        <p>You can reserve Domain Names, attach Domain Addresses to your reserved Domains, visualize your wallet, Extend or Delete Reservation Times, and a lots more.
+        <p style="font-weight: 700;">You can reserve Domain Names, attach Domain Addresses to your reserved Domains, visualize your wallet, Extend or Delete Reservation Times, and a lots more.
           All with the help of this platform.
         </p>
+    
+        <div id= "projects" class="container">
+          <h1 style=" font-size: 28px;"> CALCULATE THE RESERVATION TIME</h1><br>
+          <div class="row">
+        
+          <font style="color: black; font-weight: bold; font-size: 20px;">
+          <div class=" col-lg-12 d-flex flex-column justify-content-center">
+          <form name="addDomain">
+            <div class="form-group row">
+              <label for="sdate" class="col-4 col-form-label">DOMAIN NAME TO BE REGISTERED</label>
+              <div class="col-lg-4">
+                  <input id="dnamei" name="dnamei" placeholder="Enter the domain name" type="text" class="form-control"
+                      required="required">
+              </div>
+           
+  
+          </div>
+     
+          <div class="form-group row">
+            <label for="text" class="col-4 col-form-label">AMOUNT IN WEI</label>
+              <div class="col-lg-4">
+                  <div class="input-group">
+                      <input id="amounti" name="amount" placeholder="Insert the amount here" type="text" required="required"
+                          class="form-control">
+                     
+                  </div>
+              </div>
+              <div class="col-lg-2" id = 'reservetime'>
+                <button style="font-weight: 700;"type="button" class="btn btn-light" id = "verifyAmount">CALCULATE </button>
+              </div>
+          </div>
+          <p id="demo"></p>
   </section>
   <!-- End Home-top -->
 
@@ -185,7 +246,7 @@
         </div>
 
       </div>
-
+      
     </section>
     <!-- End Auth Section -->
     
