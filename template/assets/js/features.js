@@ -24,15 +24,15 @@ function dispName() {
     if (this.readyState === 4) {
       if (this.status >= 200 && this.status < 400) {
         var data = JSON.parse(this.responseText);
-          console.log(data.data);
-          sessionStorage.setItem(
-            "TxReceipt",
-            JSON.stringify(data.TransactionReceipt)
-          );
+        console.log(data.data);
+        sessionStorage.setItem(
+          "TxReceipt",
+          JSON.stringify(data.TransactionReceipt)
+        );
         if (data.data.length >= 4) {
           $("#edit").hide();
-          $("#addDomain").remove();
-          $("#formAdd").value(`IP Address = 
+          $("#formAdd").empty();
+          $("#formAdd").prepend(`IP Address = 
            ${data.data}`);
         } else {
           $("#formAdd").empty();
@@ -103,11 +103,11 @@ function setDomain() {
         console.log(data.TransactionReceipt);
         sessionStorage.setItem("TxReceipt", data.TransactionReceipt);
 
-          var set = data.set;
-          sessionStorage.setItem(
-            "TxReceipt",
-            JSON.stringify(data.TransactionReceipt)
-          );
+        var set = data.set;
+        sessionStorage.setItem(
+          "TxReceipt",
+          JSON.stringify(data.TransactionReceipt)
+        );
         if (set == 1) {
           $("#formAdd").empty();
           $("#formAdd").append(`<div font-size: 20px; padding: 2%;">
@@ -120,7 +120,6 @@ function setDomain() {
       } else {
         try {
           var data = JSON.parse(this.responseText);
-          alert(Object.values(data)[0]);
         } catch (err) {
           console.log(err);
 
@@ -191,7 +190,6 @@ $("#verifyAmount").on("click", function () {
       } else {
         try {
           var data = JSON.parse(this.responseText);
-          alert(Object.values(data)[0]);
         } catch (err) {
           console.log(err);
           alert("Error verifying amount! Please contact admin.");
@@ -242,11 +240,11 @@ $("#extendDomain").on("click", function () {
           // The request has been completed successfully
           var data = JSON.parse(this.responseText);
 
-            let reservationTime = data.reservationTime;
-            sessionStorage.setItem(
-              "TxReceipt",
-              JSON.stringify(data.TransactionReceipt)
-            );
+          let reservationTime = data.reservationTime;
+          sessionStorage.setItem(
+            "TxReceipt",
+            JSON.stringify(data.TransactionReceipt)
+          );
 
           if (data.TransactionReceipt.status == true) {
             console.log("extended");
@@ -275,7 +273,6 @@ $("#extendDomain").on("click", function () {
         } else {
           try {
             var data = JSON.parse(this.responseText);
-            alert(Object.values(data)[0]);
           } catch (err) {
             console.log(err);
             alert("Error in extending domain! Please try again");
@@ -311,16 +308,15 @@ $("#delDomAdd").click(function () {
         // The request has been completed successfully
         var data = JSON.parse(this.responseText);
         console.log("this.responseText :>> ", this.responseText);
-          sessionStorage.setItem("isDomainDeleted", 1);
-          sessionStorage.setItem(
-            "TxReceipt",
-            JSON.stringify(data.TransactionReceipt)
-          );
+        sessionStorage.setItem("isDomainDeleted", 1);
+        sessionStorage.setItem(
+          "TxReceipt",
+          JSON.stringify(data.TransactionReceipt)
+        );
         $("#delDomAdd").attr("disabled", "").empty().append("Domain deleted.");
       } else {
         var data = JSON.parse(this.responseText);
         console.log("this.responseText :>> ", this.responseText);
-        alert(Object.values(data)[0]);
       }
     }
   });
@@ -343,18 +339,17 @@ $("#pullDeposit").click(function () {
       if (this.readyState === 4) {
         if (this.status >= 200 && this.status < 400) {
           // The request has been completed successfully
-            var data = JSON.parse(this.responseText);
-            sessionStorage.setItem(
-              "TxReceipt",
-              JSON.stringify(data.TransactionReceipt)
-            );
+          var data = JSON.parse(this.responseText);
+          sessionStorage.setItem(
+            "TxReceipt",
+            JSON.stringify(data.TransactionReceipt)
+          );
           console.log("this.responseText :>> ", this.responseText);
           window.open("dashboard.html", "_self");
           $("#pullDeposit").attr("disabled", "").empty().append("Pulled.");
         } else {
           var data = JSON.parse(this.responseText);
           console.log("this.responseText :>> ", this.responseText);
-          alert(Object.values(data)[0]);
         }
       }
     });

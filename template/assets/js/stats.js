@@ -9,8 +9,7 @@ function stats() {
         // The request has been completed successfully
         var data = JSON.parse(this.responseText);
 
-        $("#stats")
-          .append(`
+        $("#stats").append(`
           <table class="table table-bordered" style="text-align: left ;color:white; border: 4px solid white; border-radius: 50px;">
           <thead>
           <tr style="font-weight-900; font-size: 20px "class="table-light">
@@ -118,7 +117,6 @@ function stats() {
       } else {
         try {
           var data = JSON.parse(this.responseText);
-          alert(Object.values(data)[0]);
         } catch (err) {
           console.log(err);
           alert("Error getting network details! Please contact admin.");
