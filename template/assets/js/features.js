@@ -311,6 +311,7 @@ $("#delDomAdd").click(function () {
 // pull deposit --------------------------------------------------------------
 
 $("#pullDeposit").click(function () {
+  
   var data = "";
   if (sessionStorage.getItem("isDomainDeleted")) {
 
