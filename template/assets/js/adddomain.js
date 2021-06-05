@@ -49,7 +49,6 @@ $("#verifyName").on("click", function () {
       } else {
         try {
           var data = JSON.parse(this.responseText);
-          alert(Object.values(data)[0][0]);
         } catch (err) {
           console.log(err);
           alert("Error verifying name! Please contact admin.");

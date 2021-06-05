@@ -12,8 +12,8 @@ function dashboard() {
         var eth = parseFloat(data.balance / 1000000000000000000).toFixed(2);
         var { domainNames, numOfDomains } = data;
 
-          $("#registerDomain").text(`${data.balance} wei ~ ${eth} ether`);
-          $("#regDomHead").text(`Registered Domains = ${numOfDomains}`);
+        $("#registerDomain").text(`${data.balance} wei ~ ${eth} ether`);
+        $("#regDomHead").text(`Registered Domains = ${numOfDomains}`);
 
         for (let i = 0; i < numOfDomains; i++) {
           $("#domNames").append(`<tr>
@@ -72,7 +72,6 @@ function dashboard() {
       } else {
         try {
           var data = JSON.parse(this.responseText);
-          alert(Object.values(data)[0]);
         } catch (err) {
           console.log(err);
           alert("Error getting network details! Please contact admin.");

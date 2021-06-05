@@ -56,11 +56,12 @@ $("#stuSignupBtn").on("click", function () {
         //This authentication key will expire in 1 hour.
         sessionStorage.setItem("AuthenticationExpires", new Date().addHours(1));
 
-        alert(`Your account address is ${data.userDetails.accountAddress}. Please add ethers to interact with the blockchain network!`);
+        alert(
+          `Your account address is ${data.userDetails.accountAddress}. Please add ethers to interact with the blockchain network!`
+        );
       } else {
         try {
           var data = JSON.parse(this.responseText);
-          alert(Object.values(data)[0]);
         } catch (err) {
           alert("Error signing up! Please contact admin.");
         }
@@ -124,7 +125,6 @@ $("#stuSigninBtn").on("click", function () {
       } else {
         try {
           var data = JSON.parse(this.responseText);
-          alert(Object.values(data)[0]);
         } catch (err) {
           alert("Error signing in! Please contact admin.");
         }
