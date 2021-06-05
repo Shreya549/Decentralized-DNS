@@ -61,7 +61,7 @@ function dispName() {
                 </div>
                 <div class="col-lg-1" id='amountDiv'>
                   <button style=" font-weight: 700; box-shadow: 2px 2px 10px 1px rgb(173, 165, 165); " type="button"
-                    class="btn btn-light" id="verifyAmount">SET</button>
+                    class="btn btn-light" id="verifyAmount" onClick = 'setCustomDomain()'>SET</button>
                 </div>
                 <div class="col-lg-1" id="nameDiv">
                   <button style=" font-weight: 700;" type="button" class="btn btn-light" id="verifyName" onClick = 'verifyMine()'>VERIFY</button>
@@ -86,7 +86,7 @@ function dispName() {
   xhr.send(JSON.stringify(dataDom));
 }
 
-function setDomain() {
+function setDomain(){
   let domainAddress = document.getElementById("domAdd").value;
   var data = {
     domainName: sessionStorage.getItem("domainName"),
@@ -211,8 +211,65 @@ function verifyMine() {
 }
 
 // set custom
+function setCustomDomain() {
+  if (sessionStorage.getItem("nameVerified") === null) {
+    alert("Verify both Domain Name and Domain Value first");
+  } else {
 
+    let domainAddress = document.getElementById("domAdd").value;
+    var data = {
+      domainName: sessionStorage.getItem("domainName"),
+      domainAlias: document.getElementById("sdate").value,
+    };
 
+    console.log(data);
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        if (this.status >= 200 && this.status < 400) {
+          // The request has been completed successfully
+          var data = JSON.parse(this.responseText);
+
+          console.log("data :>> ", data);
+          console.log(data.TransactionReceipt);
+
+          var set = data.set;
+          sessionStorage.setItem(
+            "TxReceipt",
+            JSON.stringify(data.TransactionReceipt)
+          );
+          if (set == 1) {
+            $("#formAdd").empty();
+            $("#formAdd").append(`<div font-size: 20px; padding: 2%;">
+           ${domainAddress}
+         </div>`);
+            window.location.reload();
+          } else {
+            alert("Error in setting domain address! Try again");
+            window.location.reload();
+          }
+        } else {
+          try {
+            var data = JSON.parse(this.responseText);
+          } catch (err) {
+            console.log(err);
+
+            alert("Error in setting domain address! Contact admin");
+            window.location.reload();
+          }
+        }
+      }
+    });
+
+    xhr.open("POST", "http://localhost:3000/domain/setCustom");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
+
+    xhr.send(JSON.stringify(data));
+  }
+}
 
 // verify amount ----------------------------------------------------------------
 
