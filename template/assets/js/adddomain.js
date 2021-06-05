@@ -74,7 +74,7 @@ $("#verifyName").on("click", function () {
 $("#verifyAmount").on("click", function () {
   var data = {
     domainName: document.addDomain.name.value,
-    domainValue: document.addDomain.amount.value,
+    domainValue: document.getElementById("amount").value,
   };
   console.log(data);
   $("#amountDiv").empty();
@@ -153,7 +153,7 @@ $("#registerDomain").on("click", function () {
   } else {
     var data = {
       domainName: document.addDomain.name.value,
-      domainValue: document.addDomain.amount.value,
+      value: document.getElementById("amount").value,
     };
     console.log(data);
     $("#finalReg").empty();

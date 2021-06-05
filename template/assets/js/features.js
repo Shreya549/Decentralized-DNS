@@ -23,7 +23,7 @@ function dispName() {
         console.log(data.data);
         if (data.data.length >= 4) {
           $("#addDomain").remove();
-          $("#formAdd").prepend(`<div font-size: 20px; padding: 2%;">
+          $("#formAdd").prepend(`<div font-size: 20px; padding: 2%;">IP Address = 
            ${data.data}
          </div>`);
         } else {
