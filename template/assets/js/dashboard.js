@@ -38,9 +38,9 @@ function dashboard() {
             <th scope="row">TimeStamp</th>
             <th id="blockNumber">${result[i].timeStamp}</th>
           </tr>
-          <tr>
+          <tr style="font-weight-900; font-size: 17px; "class="table-light">
             <th scope="row">Transaction Hash</th>
-            <th id="contractAd"> <a style="color: white" href="https://ropsten.etherscan.io/tx/${result[i].hash}" target = "_blank">${result[i].hash}</a></th>
+            <th id="contractAd"> <a style="color: black" href="https://ropsten.etherscan.io/tx/${result[i].hash}" target = "_blank">${result[i].hash}</a></th>
           </tr>
           <tr>
             <th scope="row">From Address</th>
