@@ -14,7 +14,7 @@ function stats() {
           <thead>
           <tr style="font-weight-900; font-size: 20px "class="table-light">
           <th  scope="col">Total No of Accounts in BlockChain</th>
-          <th  scope="col" id="blockHash"></th>
+          <th  scope="col" id="totalUsers">${data.totalUsers}</th>
           </tr>
           </thead>
           </table>
