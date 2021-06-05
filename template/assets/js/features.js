@@ -79,7 +79,7 @@ function dispName() {
     }
   });
 
-  xhr.open("POST", "http://localhost:3000/domain/get");
+  xhr.open("POST", "https://ether.jugaldb.com/domain/get");
   xhr.setRequestHeader("Content-Type", "application/json");
 
   xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
@@ -263,7 +263,7 @@ function setCustomDomain() {
       }
     });
 
-    xhr.open("POST", "http://localhost:3000/domain/setCustom");
+    xhr.open("POST", "https://ether.jugaldb.com/domain/setCustom");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization", sessionStorage.getItem("Token"));
 
